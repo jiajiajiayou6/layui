@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../common/echars/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width:800px;height:500px;background-color: aqua;"></div>
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            legend: {
+                data: ['Evaporation', 'Precipitation', 'Temperature']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['2022H1', '2022Q9', '2022FY', '2023Q1', '2023H1'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Precipitation',
+                    min: 0,
+                    max: 250,
+                    interval: 50,
+                    axisLabel: {
+                        formatter: '{value} ml'
+                    }
+                },
+                {
+
+                }
+            ],
+            series: [
+                {
+                    name: 'Evaporation',
+                    type: 'bar',
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return value + ' ml';
+                        }
+                    },
+                    data: [
+                        600, 900, 1241.500, 800]
+                },
+                {
+                    name: 'Precipitation',
+                    type: 'bar',
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return value + ' ml';
+                        }
+                    },
+                    data: [
+                        2.6, 5.9, 9.0, 26.4, 28.7]
+                },
+                {
+                    name: 'Temperature',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return value + ' °C';
+                        }
+                    },
+                    data: [2.0, 2.2, 3.3, 4.5, 6.3]
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>
+
+
+<!-- 日报
+今日学习:Echarts图表
+今日任务:40%
+今日问题:无 -->

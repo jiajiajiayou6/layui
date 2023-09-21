@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --theme-color: #409eff;
+        }
+
+        .demo-login-container {
+            width: 320px;
+            margin: 21px auto 0;
+        }
+
+        .demo-login-other .layui-icon {
+            position: relative;
+            display: inline-block;
+            margin: 0 2px;
+            top: 2px;
+            font-size: 26px;
+        }
+
+        #box {
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #box-con {
+            width: 100%;
+            height: 30vh;
+            background-color: var(--theme-color);
+            ;
+        }
+
+        @font-face {
+            font-family: 'iconfont';
+            /* Project id 4257376 */
+            src: url('//at.alicdn.com/t/c/font_4257376_dzoyhhcqeq8.woff2?t=1695034944442') format('woff2'),
+                url('//at.alicdn.com/t/c/font_4257376_dzoyhhcqeq8.woff?t=1695034944442') format('woff'),
+                url('//at.alicdn.com/t/c/font_4257376_dzoyhhcqeq8.ttf?t=1695034944442') format('truetype');
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon-shangcheng:before {
+            color: #409eff;
+            font-size: 67px;
+            content: "\e6b3";
+            margin-top: 3vh;
+        }
+
+        #box-bg {
+            padding-top: 20px;
+            width: 30vw;
+            height: 48vh;
+            background-color: antiquewhite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-top: 15px solid var(--theme-color);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box-bg-text {
+            color: var(--theme-color);
+            font-size: 25px;
+        }
+
+        .layui-bg-blue {
+            width: 150px !important;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box-con">
+            <img class="img" src="https://www.macrozheng.com/admin/static/img/login_center_bg.5307896.png" alt="">
+        </div>
+        <div id="box-bg">
+            <i class="iconfont icon-shangcheng"></i>
+            <h2 class="box-bg-text">mall-admin-web</h2>
+            <div>
+                <form class="layui-form">
+                    <div class="demo-login-container">
+                        <div class="layui-form-item">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-username"></i>
+                                </div>
+                                <input type="text" name="username" value="" lay-verify="required" placeholder="用户名"
+                                    lay-reqtext="请填写用户名" autocomplete="off" class="layui-input" lay-affix="clear">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-wrap">
+                                <div class="layui-input-prefix">
+                                    <i class="layui-icon layui-icon-password"></i>
+                                </div>
+                                <input type="password" name="password" value="" lay-verify="required"
+                                    placeholder="密   码" lay-reqtext="请填写密码" autocomplete="off" class="layui-input"
+                                    lay-affix="eye">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="layui-btn layui-bg-blue" lay-submit lay-filter="demo-login">登录</button>
+                            <button class="layui-btn layui-bg-blue" lay-submit lay-filter="demo-login">获取体验账号</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(function () {
+            var form = layui.form;
+            var layer = layui.layer;
+            // 提交事件
+            form.on('submit(demo-login)', function (data) {
+                var field = data.field; // 获取表单字段值
+                if (field.username == 'admin' && field.password == '123456') {
+                    layer.msg(
+                        "登陆成功",
+                        {
+                            icon: 1,
+                            time: 800,
+                        }, function () {
+                            window.location.href = "backstage.html"
+                        })
+
+
+                } else {
+                    // 显示填写结果，仅作演示用
+                    layer.alert(JSON.stringify(field), {
+                        title: '登录提示'
+                    });
+                }
+
+                // 此处可执行 Ajax 等操作
+                // …
+                return false; // 阻止默认 form 跳转
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "title": "首页",
+            "icon": "icon-shouye",
+            "children": [
+                {
+                    "title": "仪表盘",
+                    "icon": "icon-ICON-shouye",
+                    "url": "home.html"
+                },
+                {
+                    "title": "学习教程",
+                    "icon": "icon-wendang",
+                    "url": "home.html"
+                },
+                {
+                    "title": "学习教程",
+                    "icon": "icon-shipinbofang",
+                    "url": "home.html"
+                }
+            ]
+        },
+        {
+            "title": "商品",
+            "icon": "icon-shangcheng",
+            "children": [
+                {
+                    "title": "商品列表",
+                    "icon": "icon-pinpaitemai",
+                    "url": "home.html"
+                },
+                {
+                    "title": "添加商品",
+                    "icon": "icon-shipinbofang",
+                    "url": "home.html"
+                },
+                {
+                    "title": "商品分类",
+                    "icon": "icon-fenlei",
+                    "url": "home.html"
+                },
+                {
+                    "title": "商品类型",
+                    "icon": "icon-shipinbofang",
+                    "url": "home.html"
+                },
+                {
+                    "title": "品牌管理",
+                    "icon": "icon-leixing",
+                    "url": "home.html"
+                }
+            ]
+        },
+        {
+            "title": "首页",
+            "icon": "icon-shouye",
+            "children": [
+                {
+                    "title": "仪表盘",
+                    "icon": "",
+                    "url": "home.html"
+                },
+                {
+                    "title": "学习教程",
+                    "icon": "icon-wendang",
+                    "url": "home.html"
+                },
+                {
+                    "title": "学习教程",
+                    "icon": "icon-shipinbofang",
+                    "url": "home.html"
+                }
+            ]
+        },
+        {
+            "title": "首页",
+            "icon": "icon-shouye",
+            "children": [
+                {
+                    "title": "仪表盘",
+                    "icon": "",
+                    "url": "home.html"
+                },
+                {
+                    "title": "学习教程",
+                    "icon": "icon-wendang",
+                    "url": "home.html"
+                },
+                {
+                    "title": "学习教程",
+                    "icon": "icon-shipinbofang",
+                    "url": "home.html"
+                }
+            ]
+        }
+    ]
+}
