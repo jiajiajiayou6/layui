@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+       
+    <script src="https://www.isqqw.com/dep/echarts/map/js/china.js"></script>
+    <script src="../common/jQuery/jquery-3.6.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+
+        }
+
+        #box {
+
+            width: 80%;
+            height: 80vh;
+            background-color: white;
+            position: relative;
+            top: 10vh;
+            margin: auto;
+        }
+
+        #box-top {
+            width: 100%;
+            height: 20%;
+            margin: auto;
+        }
+
+        #box-con {
+            width: 100%;
+            height: 80%;
+            display: flex;
+        }
+
+        ul {
+            width: 100%;
+            height: 100%;
+        }
+
+        li {
+            width: 20%;
+            height: 100%;
+            float: left;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .box-top-top {
+            height: 50%;
+            line-height: 85px;
+            width: 80%;
+            color: gray;
+            margin-left: 10%;
+        }
+
+
+
+        .box-top-con {
+            height: 50%;
+            display: block;
+            width: 80%;
+            font-size: 25px;
+            margin-left: 10%;
+
+        }
+
+        #main {
+            width: 60%;
+            height: 100%;
+        }
+
+        #aeix {
+            width: 40%;
+            height: 70%;
+            margin-top: 100px;
+            border: 1px solid rgb(232, 232, 232);
+            border-radius: 15px;
+        }
+
+        #aeix li {
+            width: 80%;
+            font-size: 10px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            margin-left: 20px;
+            display: flex;
+        }
+
+        .li1 {
+            width: 10%;
+        }
+
+        .li2 {
+            width: 50%;
+        }
+
+        .li3 {
+            width: 20%;
+        }
+
+        .li4 {
+            width: 20%;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box-top">
+            <ul>
+                <li>
+                    <div class="box-top-top">浏览量(PV)</div>
+                    <b class="box-top-con">50</b>
+                </li>
+                <li>
+                    <div class="box-top-top">访问数(UV)</div>
+                    <b class="box-top-con">27</b>
+                </li>
+                <li>
+                    <div class="box-top-top">IP数</div>
+                    <b class="box-top-con">7</b>
+                </li>
+                <li>
+                    <div class="box-top-top">跳出率</div>
+                    <b class="box-top-con">87.5%</b>
+                </li>
+                <li>
+                    <div class="box-top-top">平均访问时长</div>
+                    <b class="box-top-con">00:04:08</b>
+                </li>
+            </ul>
+        </div>
+        <div id="box-con">
+            <div id="main"></div>
+            <div id="aeix">
+                <li style="margin-top: 100px;background-color: rgb(202, 202, 202);border-radius: 8px 8px 0 0;">
+                    <div class="li1"></div>
+                    <div class="li2">省份</div>
+                    <div class="li3">浏览量(PV)</div>
+                    <div class="li4">占比</div>
+                </li>
+                <li>
+                    <div class="li1">1</div>
+                    <div class="li2">河南</div>
+                    <div class="li3">43</div>
+                    <div class="li4">86%</div>
+                </li>
+                <li>
+                    <div class="li1">2</div>
+                    <div class="li2">广东</div>
+                    <div class="li3">4</div>
+                    <div class="li4">8%</div>
+                </li>
+                <li>
+                    <div class="li1">3</div>
+                    <div class="li2">其余地区</div>
+                    <div class="li3">3</div>
+                    <div class="li4">6%</div>
+                </li>
+            </div>
+        </div>
+    </div>
+    <a href="./index.html">首页</a>
+    <a href="./map地图.html">Echarts数据</a>
+    <a href="./map地图.html">map地图</a>
+    <a href="./map路线.html">map路线</a>
+    <a href="./swiper轮播图.html">swiper轮播图</a>
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+        function mapTooltipClick(name) {
+            alert(name)
+        }
+
+        function tooltipCharts() {
+            console.log(arguments[0]);
+            var myChart1 = echarts.init(document.getElementById('tooltipBarId'));
+            var option = {
+                tooltip: {},
+                dataset: {
+                    source: [
+                        ['xAxis', '201701', '201702', '201703', '201704', '201705', '201706', '201707', '201708', '201709', '20170', '201710', '20170', '201801'],
+                        ['amount', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7, 65.1, 53.3, 41.1, 30.4, 53.3, 41.1, 53.3, 83.8]
+                    ]
+                },
+                xAxis: {
+                    type: 'category',
+                    interval: true,
+                    axisLabel: {
+                        rotate: 45
+                    },
+                    axisTick: {
+                        show: false
+                    }
+                },
+                yAxis: {},
+                color: ['#4FA8F9', '#F5A623'],
+                grid: {
+                    show: true,
+                    backgroundColor: '#FAFAFA',
+                    left: 30,
+                    right: 20,
+                    top: 20
+                },
+                series: [{
+                    type: 'bar',
+                    smooth: true,
+                    seriesLayoutBy: 'row',
+                    barWidth: 10
+                }]
+            };
+            myChart1.setOption(option);
+        }
+        option = {
+            visualMap: [{
+                min: 0,
+                max: 1000,
+                left: 'left',
+                top: 'bottom',
+                //seriesIndex: 0,
+                text: ['高', '低'],
+                calculable: false,
+                orient: 'horizontal',
+                inRange: {
+                    color: ['#e0ffff', '#006edd'],
+                    symbolSize: [30, 100]
+                }
+            },
+            ],
+            tooltip: {
+                padding: 8,
+                enterable: true,
+                transitionDuration: 1,
+                textStyle: {
+                    color: '#fff',
+                    decoration: 'none',
+                }
+            },
+            geo: [{
+                map: 'china'
+            },
+            ],
+            series: [
+                //      {
+                //     name: '散点',
+                //     type: 'scatter',
+                //     coordinateSystem: 'geo',
+                //     data: [
+                //         {
+                //             "name": "北京",
+                //             "value": [
+                //                 116.405285,
+                //                 39.904989,
+                //                 199
+                //             ]
+                //         },
+                //         {
+                //             "name": "新疆",
+                //             "value": [
+                //                 87.617733,
+                //                 43.792818,
+                //                 180
+                //             ]
+                //         },
+                //         {
+                //             "name": "河南",
+                //             "value": [
+                //                 113.665412,
+                //                 34.757975,
+                //                 137
+                //             ]
+                //         },
+                //         {
+                //             "name": "四川",
+                //             "value": [
+                //                 104.065735,
+                //                 30.659462,
+                //                 125
+                //             ]
+                //         },
+                //         {
+                //             "name": "黑龙江",
+                //             "value": [
+                //                 126.642464,
+                //                 45.756967,
+                //                 123
+                //             ]
+                //         },
+                //         {
+                //             "name": "广东",
+                //             "value": [
+                //                 113.280637,
+                //                 23.125178,
+                //                 123
+                //             ]
+                //         },
+                //         {
+                //             "name": "山东",
+                //             "value": [
+                //                 117.000923,
+                //                 36.675807,
+                //                 119
+                //             ]
+                //         },
+                //         {
+                //             "name": "福建",
+                //             "value": [
+                //                 119.306239,
+                //                 26.075302,
+                //                 116
+                //             ]
+                //         },
+                //         {
+                //             "name": "湖北",
+                //             "value": [
+                //                 114.298572,
+                //                 30.584355,
+                //                 116
+                //             ]
+                //         },
+                //         {
+                //             "name": "浙江",
+                //             "value": [
+                //                 120.153576,
+                //                 30.287459,
+                //                 114
+                //             ]
+                //         },
+                //         {
+                //             "name": "湖南",
+                //             "value": [
+                //                 112.982279,
+                //                 28.19409,
+                //                 114
+                //             ]
+                //         },
+                //         {
+                //             "name": "安徽",
+                //             "value": [
+                //                 117.283042,
+                //                 31.86119,
+                //                 109
+                //             ]
+                //         },
+                //         {
+                //             "name": "河北",
+                //             "value": [
+                //                 114.502461,
+                //                 38.045474,
+                //                 102
+                //             ]
+                //         },
+                //         {
+                //             "name": "江苏",
+                //             "value": [
+                //                 118.767413,
+                //                 32.041544,
+                //                 92
+                //             ]
+                //         },
+                //         {
+                //             "name": "江西",
+                //             "value": [
+                //                 115.892151,
+                //                 28.676493,
+                //                 91
+                //             ]
+                //         },
+                //         {
+                //             "name": "重庆",
+                //             "value": [
+                //                 106.504962,
+                //                 29.533155,
+                //                 91
+                //             ]
+                //         },
+                //         {
+                //             "name": "云南",
+                //             "value": [
+                //                 102.712251,
+                //                 25.040609,
+                //                 83
+                //             ]
+                //         },
+                //         {
+                //             "name": "吉林",
+                //             "value": [
+                //                 125.3245,
+                //                 43.886841,
+                //                 82
+                //             ]
+                //         },
+                //         {
+                //             "name": "山西",
+                //             "value": [
+                //                 112.549248,
+                //                 37.857014,
+                //                 81
+                //             ]
+                //         },
+                //         {
+                //             "name": "陕西",
+                //             "value": [
+                //                 108.948024,
+                //                 34.263161,
+                //                 80
+                //             ]
+                //         },
+                //         {
+                //             "name": "辽宁",
+                //             "value": [
+                //                 123.429096,
+                //                 41.796767,
+                //                 67
+                //             ]
+                //         },
+                //         {
+                //             "name": "贵州",
+                //             "value": [
+                //                 106.713478,
+                //                 26.578343,
+                //                 62
+                //             ]
+                //         },
+                //         {
+                //             "name": "广西",
+                //             "value": [
+                //                 108.320004,
+                //                 22.82402,
+                //                 59
+                //             ]
+                //         },
+                //         {
+                //             "name": "甘肃",
+                //             "value": [
+                //                 103.823557,
+                //                 36.058039,
+                //                 56
+                //             ]
+                //         },
+                //         {
+                //             "name": "内蒙古",
+                //             "value": [
+                //                 111.670801,
+                //                 40.818311,
+                //                 47
+                //             ]
+                //         },
+                //         {
+                //             "name": "天津",
+                //             "value": [
+                //                 117.190182,
+                //                 39.125596,
+                //                 42
+                //             ]
+                //         },
+                //         {
+                //             "name": "上海",
+                //             "value": [
+                //                 121.472644,
+                //                 31.231706,
+                //                 24
+                //             ]
+                //         },
+                //         {
+                //             "name": "宁夏",
+                //             "value": [
+                //                 106.278179,
+                //                 38.46637,
+                //                 18
+                //             ]
+                //         },
+                //         {
+                //             "name": "海南",
+                //             "value": [
+                //                 110.33119,
+                //                 20.031971,
+                //                 14
+                //             ]
+                //         },
+                //         {
+                //             "name": "青海",
+                //             "value": [
+                //                 101.778916,
+                //                 36.623178,
+                //                 10
+                //             ]
+                //         },
+                //         {
+                //             "name": "西藏",
+                //             "value": [
+                //                 91.132212,
+                //                 29.660361,
+                //                 9
+                //             ]
+                //         }
+                //     ],
+                //     symbolSize: function(val) {
+                //         return val[2] / 10;
+                //     },
+                //     label: {
+                //         normal: {
+                //             formatter: '{b}',
+                //             position: 'right',
+                //             show: true
+                //         },
+                //         emphasis: {
+                //             show: true,
+                //               color: 'red'
+                //         }
+                //     },
+                //     itemStyle: {
+                //         normal: {
+                //             color: '#000'
+                //         }
+                //     }
+                // },
+                {
+                    name: '接入医院数量',
+                    type: 'map',
+                    geoIndex: 0,
+                    // mapType: 'china',
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: true
+                            }
+                        }
+                    },
+                    label: {
+                        normal: { //静态的时候展示样式
+                            show: true, //是否显示地图省份得名称
+                            textStyle: {
+                                color: "#fff",
+                                fontSize: 12
+                            }
+                        },
+                        emphasis: { //动态展示的样式
+                            color: '#fff',
+                        },
+                    },
+                    data: [{
+                        name: '内蒙古',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '陕西',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '吉林',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '福建',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    ]
+                },
+                {
+                    name: '接入医院数量',
+                    type: 'map',
+                    geoIndex: 0,
+                    // mapType: 'china',
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: true
+                            }
+                        }
+                    },
+                    label: {
+                        normal: { //静态的时候展示样式
+                            show: true, //是否显示地图省份得名称
+                            textStyle: {
+                                color: "#fff",
+                                fontSize: 12
+                            }
+                        },
+                        emphasis: { //动态展示的样式
+                            color: '#fff',
+                        },
+                    },
+                    data: [{
+                        name: '北京',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '天津',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '上海',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '重庆',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '河北',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '河南',
+
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+
+                    ]
+                },
+
+                {
+                    name: '接入医院数量',
+                    type: 'map',
+                    geoIndex: 0,
+                    // mapType: 'china',
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: true
+                            }
+                        }
+                    },
+                    label: {
+                        normal: { //静态的时候展示样式
+                            show: true, //是否显示地图省份得名称
+                            textStyle: {
+                                color: "#fff",
+                                fontSize: 12
+                            }
+                        },
+                        emphasis: { //动态展示的样式
+                            color: '#fff',
+                        },
+                    },
+                    data: [{
+                        name: '江西',
+                        value: Math.round(Math.random() * 1000),
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+                    {
+                        name: '湖北',
+                        value: Math.round(Math.random() * 1000),
+                        tipData: [Math.round(Math.random() * 1000), Math.round(Math.random() * 1000)]
+                    },
+
+                    ]
+                },
+
+
+            ]
+        }
+        var count = 0;
+        var timeTicket = null;
+        var dataLength = option.series[0].data.length;
+        timeTicket && clearInterval(timeTicket);
+        timeTicket = setInterval(function () {
+            myChart.dispatchAction({
+                type: 'downplay',
+                seriesIndex: [0],
+            });
+            myChart.dispatchAction({
+                type: 'highlight',
+                seriesIndex: [0],
+                dataIndex: (count) % dataLength
+            });
+            myChart.dispatchAction({
+                type: 'showTip',
+                seriesIndex: [0],
+                dataIndex: (count) % dataLength
+            });
+            count++;
+        }, 1000);
+
+        myChart.on('mouseover', function (params) {
+            console.log(params)
+            clearInterval(timeTicket);
+            myChart.dispatchAction({
+                type: 'downplay',
+                seriesIndex: 0
+            });
+            myChart.dispatchAction({
+                type: 'highlight',
+                seriesIndex: 0,
+                dataIndex: params.dataIndex
+            });
+            myChart.dispatchAction({
+                type: 'showTip',
+                seriesIndex: 0,
+                dataIndex: params.dataIndex,
+            });
+        });
+        myChart.on('mouseout', function (params) {
+            timeTicket && clearInterval(timeTicket);
+            timeTicket = setInterval(function () {
+                myChart.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0,
+                });
+                myChart.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    dataIndex: (count) % dataLength
+                });
+                myChart.dispatchAction({
+                    type: 'showTip',
+                    seriesIndex: 0,
+                    dataIndex: (count) % dataLength
+                });
+                count++;
+            }, 1000);
+        });
+        option && myChart.setOption(option);
+    </script>
+</body>
+
+</html>

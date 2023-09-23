@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* 定义变量与值 */
+h1 {
+  color: brown;
+}
+
+h2 {
+  color: antiquewhite;
+}
+
+/* 使用变量 */
+body {
+  background-color: lightblue;
+  font-size: 18px;
+}/*# sourceMappingURL=sa.css.map */
