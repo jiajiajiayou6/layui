@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // .1 class类完成一个计算器类
+        class Calculator {
+            constructor(initialMemory = 0) {
+                this.memory = initialMemory;
+            }
+            // 增加计算器内存  
+            addToMemory(value) {
+                this.memory = this.memory * 1 + value * 1;
+            }
+            // 从计算器内存中减去值  
+            subtractFromMemory(value) {
+                this.memory = this.memory * 1 - value * 1;
+            }
+            // 将计算器内存的值设为0  
+            clearMemory() {
+                this.memory = 0;
+            }
+            // 将内存中的值乘以倍数  
+            multiplyBy(multiplier) {
+                this.memory *= multiplier;
+            }
+            // 将内存中的值除以倍数  
+            exceptBy(multiplier) {
+                this.memory /= multiplier;
+            }
+            // 获取计算器内存中的值  
+            getMemory() {
+                return this.memory;
+            }
+        }
+        let user1 = prompt("请输入第一位值：");
+        let users = prompt("请输入符号：");
+        let user2 = prompt("请输入第二位值：");
+        const calculator = new Calculator(user1); // 初始化计算器 
+        switch (users) {
+            case "+":
+                calculator.addToMemory(user2); // 增加
+                console.log("加法得" + calculator.getMemory());
+                break;
+            case "-":
+                calculator.subtractFromMemory(user2); // 减去
+                console.log("减法得" + calculator.getMemory());
+                break;
+            case "*":
+                calculator.multiplyBy(user2); // 乘以
+                console.log("乘法得" + calculator.getMemory());
+                break;
+            case "/":
+                calculator.exceptBy(user2); // 除以
+                console.log("除法得" + calculator.getMemory());
+                break;
+            default:
+                console.log("无效运算符");
+                break;
+        }
+        calculator.clearMemory(); // 清空
+    </script>
+    <script>
+        // .2 请封装一个函数判断2个对象是否相等
+        // 例如
+        function deepCuarl(obj1, obj2) {
+            // 检查两个对象是否是同一个对象
+            if (obj1 === obj2) {
+                return true;
+            };
+            // 检查两个对象是否具有相同的结构
+            if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+                return false;
+            };
+            // 检查两个对象是否有相同长度的属性  
+            const keys1 = Object.keys(obj1);
+            const keys2 = Object.keys(obj2);
+            if (keys1.length !== keys2.length) {
+                return false;
+            }
+            // 遍历并比较两个对象的所有属性  
+            for (let key of keys1) {
+                if (!deepCuarl(obj1[key], obj2[key])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        let arr1 = { a: 1, b: 2, c: 3 };
+        let arr2 = { a: 1, b: 2, c: 3 };
+        let arr3 = { a: 1, b: 2, c: { a: 3, b: 2 } };
+        console.log("arr1 = { a: 1, b: 2, c: 3 }；与arr2 = { a: 1, b: 2, c: 3 }；比较得" + deepCuarl(arr1, arr2)); // 输出 true  
+        console.log("arr1 = { a: 1, b: 2, c: 3 }；与arr2 = a: 1, b: 2, c: { a: 3, b: 2 }； 比较得" + deepCuarl(arr1, arr3)); // 输出 false
+    </script>
+    <script>
+        // .3 给数组原型对象增加一个批量删除方法 mydelete，
+        //   要求这个方法可以传入多个下标将该下标的值进行删除
+        let brr = ['a', 'b', 'c', 'd', 'e'];
+        console.log("原数据brr = ['a', 'b', 'c', 'd', 'e']");
+        Array.prototype.mydelete = function () {
+            let brr1 = Array.from(arguments)
+            brr1.sort((a, b) => b - a);
+            for (let b of brr1) {
+                if (b >= 0 && b < this.length) {
+                    this.splice(b, 1)
+                }
+            }
+        }
+        brr.mydelete(1, 2)
+        console.log(brr);
+    </script>
+    <script>
+        // .4 假设有一个名为fetchData() 的异步函数用于获取数据，
+        //    它返回一个 Promise 对象，成功时返回数据，失败时返回错误信息。
+        //    请根据以下要求完成题目:1.定义 fetchData()函数，获取数据并打印，
+        //    2.对于同时需要获取两个数据的情况，使用 Promise.all()实现并行请求，
+        //    并在两个数据都返回后打印
+        //    3.使用 Promise.race() 实现一个超时函数，该函数接受两个参数:
+        //    一个是超时时间另一个是Promise 对象。如果 Promise 对象在指定时间
+        //    内没有返回结果，则视作失败，并返回一个超时错误。
+        function fetchData(url) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (url !== null) {
+                        resolve(`数据1: ${url}`);
+                    } else {
+                        reject(`错误1: ${url}`);
+                    }
+                }, 1000);
+            });
+        }
+
+        fetchData('url1')
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('错误:', error);
+            });
+
+
+    </script>
+</body>
+
+</html>
